@@ -1,10 +1,68 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Vy Kundeservice</title>
 </head>
 <body>
+  <h1>Kundeservice for VY</h1>
 
+  <!--Div som viser spørsmål og svar-->
+  <div>
+    <div class="col-md-6 col-md-offset" *ngIf="visSpm">
+      <div *nfIf="laster">Laster spørsmål...</div>
+      <table class="table table-border table-condensed">
+        <thread>
+          <tr>
+            <th>Kategori</th>
+            <th>Spørsmål</th>
+            <th>Svar</th>
+            <th>Tommel opp</th>
+            <th>Tommel ned</th>
+          </tr>
+        </thread>
+        <tbody *ngFor="let spm of alleSpm">
+          <tr>
+            <td>{{spm.kategori}}</td>
+            <td>{{spm.sporsmal}}</td>
+            <td>{{spm.svar}}</td>
+            <td>{{spm.tommelOpp}}</td>
+            <td>{{spm.tommelNed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> <!--Avslutt div som viser spørsmål og svar-->
+
+
+  <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema"> <!--Div som inneholder skjema for innsending av spørsmål-->
+    <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+      <input class="form-control" formControlName="id" type="hidden" />
+      <div class="form-group">
+        <label>Navn</label>
+        <input class="form-control" formControlName="navn" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.navn.valid ELLER (skjema.controls.navn.pristine && !submitted)">
+          Vennligst oppgi navn.
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Epost</label>
+        <input class="form-control" formControlName="epost" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid ELLER (skjema.controls.epost.pristine && !submitted)">
+          Vennligst oppgi din epost
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Spørsmål</label>
+        <input class="form-control" formControlName="sporsmal" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.sporsmal.valid ELLER (skjema.controls.sporsmal.pristine && !submitted)">
+          Vennligst fortell oss hva du lurer på.
+        </p>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-primary btn-primary">Send inn spørsmålet</button>
+       </div>
+    </form>
+  </div> <!-- Avslutter div som inneholder innsendingsskjema-->
 </body>
 </html>

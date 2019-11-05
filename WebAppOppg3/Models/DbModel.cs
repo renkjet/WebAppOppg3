@@ -10,9 +10,7 @@ namespace WebAppOppg3.Models
     public class SpmContext : DbContext
     {
         public SpmContext(DbContextOptions<SpmContext> options)
-            : base(options)
-        { 
-        }
+            : base(options){}
 
         public DbSet<Spm> Spm { get; set; }
         public DbSet<InnsendtSpm> InnsendtSpms { get; set; }
