@@ -21,8 +21,9 @@ namespace WebAppOppg3.Models
         {
             public int Id { get; set; }
             public String Navn { get; set; }
-            public String Sporsmal { get; set; }
             public String Epost { get; set; }
+            public String Sporsmal { get; set; }
+            
         }
     }
 
