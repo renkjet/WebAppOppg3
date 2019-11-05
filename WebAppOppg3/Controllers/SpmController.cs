@@ -19,7 +19,14 @@ namespace WebAppOppg3.Controllers
             _context = context;
         }
 
-        // GET api/Kunde
-    
+        // GET api/Spm/5
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
+        {
+            var kundeDb = new KundeDB(_context);
+            kunde enKunde = kundeDb.hentEnKunde(id);
+            return Json(enKunde);
+        }
+
     }
 }

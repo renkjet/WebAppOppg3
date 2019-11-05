@@ -48,15 +48,49 @@ namespace WebAppOppg3
         }
 
         // Øker "upvote" på spørsmål
-        public bool OkTommelOpp(Spm spm)
+        public bool OkTommelOpp(int Id, Spm innSpm)
         {
-            Spm spm1 = 
+            // Finner korrekt spm
+            Spm funnetSpm = _context.Spm.FirstOrDefault(s => s.Id == Id);
+            if(funnetSpm == null)
+            {
+                return false;
+            }
+            // øker spørsmålet sin tommelOpp
+            funnetSpm.TommelOpp = innSpm.TommelOpp++;
+            try
+            {
+                // lagre spm
+                _context.SaveChanges();
+            }
+            catch (Exception feil)
+            {
+                return false;
+            }
+            return true;
         }
 
         // Øker "downvote" på spørsmål
-        public bool OkTommelNed(Spm spm)
+        public bool OkTommelNed(int Id, Spm innSpm)
         {
-
+            // Finner korrekt spm
+            Spm funnetSpm = _context.Spm.FirstOrDefault(s => s.Id == Id);
+            if (funnetSpm == null)
+            {
+                return false;
+            }
+            // øker spørsmålet sin tommelOpp
+            funnetSpm.TommelNed = innSpm.TommelNed++;
+            try
+            {
+                // lagre spm
+                _context.SaveChanges();
+            }
+            catch (Exception feil)
+            {
+                return false;
+            }
+            return true;
         }
 
         // Lagrer innsendt spm til database
@@ -82,6 +116,5 @@ namespace WebAppOppg3
             }
             return true;
         }
-
     }
 }
