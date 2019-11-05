@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebAppOppg3.Models
+{
+        public class SpmDomene
+        {
+            public int Id { get; set; }
+            public Kategori Kategori { get; set; }
+            public String Sporsmal { get; set; }
+            public String Svar { get; set; }
+            public int TommelOpp { get; set; }
+            public int TommelNed { get; set; }
+
+        }
+
+        public class InnsendtSpmDomene
+        {
+            public int Id { get; set; }
+            public String Navn { get; set; }
+            public String Sporsmal { get; set; }
+            public String Epost { get; set; }
+        }
+    }
+
