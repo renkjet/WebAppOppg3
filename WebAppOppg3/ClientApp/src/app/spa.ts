@@ -10,14 +10,33 @@ import { InnsendtSpm } from "./InnsendtSpm";
 })
 
 export class SPA {
-    visSkjema: boolean;
-    visSpm: boolean;
+    visSkjema: boolean; //ngIf visSkjema
+    visSpm: boolean; // ngIf visSpm
+    alleSpm: Array<Spm>; // Liste av alle spm
     skjema: FormGroup;
     laster: boolean;
 
-    ngOnInit() {
-        this.laster = true;
+    constructor(private _http: HttpClient, private fb: FormBuilder) {
 
     }
+
+    ngOnInit() {
+        this.laster = true;
+        this.visSpm = true;
+        this.visSkjema = false;
+        this.hentAlleSpm();
+    }
+
+    hentAlleSpm() {
+        this._http.get<Spm[]>("api/SpmDomene")
+            .subscribe(
+                spmObjekt => {
+                    this.alleSpm = spmObjekt;
+                    this.laster = false;
+                },
+                error => alert(error)
+            );
+    };
+    
 }
 
