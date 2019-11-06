@@ -22,9 +22,10 @@ export class SPA {
 
     ngOnInit() {
         this.laster = true;
+        this.hentAlleSpm();
         this.visSpm = true;
         this.visSkjema = false;
-        this.hentAlleSpm();
+        
     }
 
     hentAlleSpm() {
