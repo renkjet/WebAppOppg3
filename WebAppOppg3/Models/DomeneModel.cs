@@ -28,7 +28,7 @@ namespace WebAppOppg3.Models
         public String Epost { get; set; }
         [Required]
         [RegularExpression("^[a-zøæåA-ZØÆÅ.0-9!?.,;.() \\-]{2,250}$")] // Hvor mange tegn????
-        public String Sporsmal { get; set; }
+        public String spm { get; set; }
             
         }
     }

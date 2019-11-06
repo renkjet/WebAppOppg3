@@ -29,6 +29,45 @@ namespace WebAppOppg3.Controllers
         }
 
         // GET api/Spm/5
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
+        {
+            var db = new DB(_context);
+            SpmDomene spm = db.hentEtSpm(id);
+            return Json(spm);
+        }
+
+        // POST api/InnsendtSpmDomene
+        [HttpPost]
+        public JsonResult Post([FromBody] InnsendtSpmDomene innSpm)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new DB(_context);
+                bool OK = db.lagreInnsendtSpm(innSpm);
+                if (OK)
+                {
+                    return Json("OK");
+                }
+            }
+            return Json("Kunne ikke sette inn kunden i DB");
+        }
+
+        // PUT api/Spm/1
+        [HttpPut("{id}")]
+        public JsonResult Put (int id, [FromBody] SpmDomene innSpm)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new DB(_context);
+                bool OK = db.endreSpm(id, innSpm);
+                if (OK)
+                {
+                    return Json("Spørsmålet er endret");
+                }
+            }
+            return Json("Kunne ikke endre spørsmålet i DB");
+        }
       
 
     }

@@ -3,58 +3,62 @@
   <!--Div som viser spørsmål og svar-->
   <div>
     <div class="col-md-6 col-md-offset" *ngIf="visSpm">
-      <div *nfIf="laster">Laster spørsmål...</div>
+      <div *ngIf="laster">Laster spørsmål...</div>
+      <button class="btn-primary btn-primary" (click) ="tilSkjema()">Her kan du stille spørsmål</button>
       <table class="table table-border table-condensed">
-        <thread>
-          <tr>
-            <th>Kategori</th>
-            <th>Spørsmål</th>
-            <th>Svar</th>
-            <th>Tommel opp</th>
-            <th>Tommel ned</th>
-          </tr>
-        </thread>
+        <!--<thread>-->
+        <tr>
+          <th>Kategori</th>
+          <th>Spørsmål</th>
+          <th>Svar</th>
+          <th>Tommel opp</th>
+          <th>Tommel ned</th>
+        </tr>
+        <!--</thread>-->
         <tbody *ngFor="let spm of alleSpm">
           <tr>
             <td>{{spm.kategori}}</td>
             <td>{{spm.sporsmal}}</td>
             <td>{{spm.svar}}</td>
-            <td>{{spm.tommelOpp}}</td>
-            <td>{{spm.tommelNed}}</td>
+            <td><button class="btn btn-success" (click) ="okVote($event)">Upvotes {{spm.tommelOpp}}</button></td>
+            <td><button class="btn btn-success">DownVotes {{spm.tommelNed}} </button></td>
           </tr>
         </tbody>
       </table>
+
     </div>
   </div> <!--Avslutt div som viser spørsmål og svar-->
 
 
-  <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema"> <!--Div som inneholder skjema for innsending av spørsmål-->
-    <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+  <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema">
+    <button class="btn-primary btn-primary" (click)="tilSpm()">Oversikt over spørsmål og svar</button>
+    <!--Div som inneholder skjema for innsending av spørsmål-->
+    <form [formGroup]="skjema" (ngSubmit)="lagreInnSendtSpm()">
       <input class="form-control" formControlName="id" type="hidden" />
       <div class="form-group">
         <label>Navn</label>
         <input class="form-control" formControlName="navn" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.navn.valid ELLER (skjema.controls.navn.pristine && !submitted)">
+        <p class="alert alert-warning" [hidden]="skjema.controls.navn.valid || (skjema.controls.navn.pristine && !submitted)">
           Vennligst oppgi navn.
         </p>
       </div>
       <div class="form-group">
         <label>Epost</label>
         <input class="form-control" formControlName="epost" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid ELLER (skjema.controls.epost.pristine && !submitted)">
+        <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
           Vennligst oppgi din epost
         </p>
       </div>
       <div class="form-group">
-        <label>Spørsmål</label>
-        <input class="form-control" formControlName="sporsmal" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.sporsmal.valid ELLER (skjema.controls.sporsmal.pristine && !submitted)">
+        <label>Sporsmal</label>
+        <input class="form-control" formControlName="spm" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.spm.valid || (skjema.controls.spm.pristine && !submitted)">
           Vennligst fortell oss hva du lurer på.
         </p>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn-primary btn-primary">Send inn spørsmålet</button>
-       </div>
+        <button type="submit" [disabled]="!skjema.valid" class="btn-primary btn-primary">Send inn spørsmålet</button>
+      </div>
     </form>
   </div> <!-- Avslutter div som inneholder innsendingsskjema-->
 
