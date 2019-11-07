@@ -15,10 +15,6 @@ export class SPA {
     alleSpm: Array<Spm>; // Liste av alle spm
     skjema: FormGroup; // Må definere skjema
     laster: boolean;
-    etSpm: Spm; // Fungerer ikke enda
-
-    tommelOpp: number;
-    tommelNed: number;
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -87,12 +83,6 @@ export class SPA {
                 },
                 error => alert(error),
             );
-    }
-
-    // TESTMNETODER SOM IKKE FUNGERER ......
-
-    okVote($event) {
-        console.log("Save button is clicked!", $event);
-    }    
+    }  
 }
 
