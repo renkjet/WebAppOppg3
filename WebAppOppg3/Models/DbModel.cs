@@ -16,24 +16,15 @@ namespace WebAppOppg3.Models
         public DbSet<InnsendtSpm> InnsendtSpms { get; set; }
     }
 
-    public enum Kategori
-    {
-        Billetter,
-        Bagasje,
-        Spesialbehov,
-        Rutetider
-    }
-
     public class Spm
     {
         [Key]
         public int Id { get; set; }
-        public Kategori Kategori { get; set; }
+        public String Kategori { get; set; }
         public String Sporsmal { get; set; }
         public String Svar { get; set; }
         public int TommelOpp { get; set; }
         public int TommelNed { get; set; }
-
     }
 
     public class InnsendtSpm
@@ -43,7 +34,6 @@ namespace WebAppOppg3.Models
         public String Navn { get; set; }
         public String Epost { get; set; }
         public String Sporsmal { get; set; }
-        
     }
 }
 

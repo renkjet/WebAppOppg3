@@ -23,8 +23,8 @@ namespace WebAppOppg3.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var db = new DB(_context);
-            List<SpmDomene> alleSpm = db.hentAlleSpm();
+            var db = new DB2(_context);
+            List<Spm> alleSpm = db.hentAlleSpm();
             return Json(alleSpm);
         }
 
@@ -32,18 +32,18 @@ namespace WebAppOppg3.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var db = new DB(_context);
-            SpmDomene spm = db.hentEtSpm(id);
+            var db = new DB2(_context);
+            Spm spm = db.hentEtSpm(id);
             return Json(spm);
         }
 
-        // POST api/InnsendtSpmDomene
+        // POST api/Spm
         [HttpPost]
         public JsonResult Post([FromBody] InnsendtSpmDomene innSpm)
         {
             if (ModelState.IsValid)
             {
-                var db = new DB(_context);
+                var db = new DB2(_context);
                 bool OK = db.lagreInnsendtSpm(innSpm);
                 if (OK)
                 {
@@ -55,11 +55,11 @@ namespace WebAppOppg3.Controllers
 
         // PUT api/Spm/1
         [HttpPut("{id}")]
-        public JsonResult Put (int id, [FromBody] SpmDomene innSpm)
+        public JsonResult Put (int id, [FromBody] Spm innSpm)
         {
             if (ModelState.IsValid)
             {
-                var db = new DB(_context);
+                var db = new DB2(_context);
                 bool OK = db.endreSpm(id, innSpm);
                 if (OK)
                 {

@@ -24,7 +24,7 @@ namespace WebAppOppg3
         public void ConfigureServices(IServiceCollection services) 
         { 
             services.AddMvc(); 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=DB;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=DB2;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<SpmContext>(options => options.UseSqlServer(connection));
         }
 

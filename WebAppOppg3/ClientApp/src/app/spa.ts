@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { Spm } from "./Spm";
 import { InnsendtSpm } from "./InnsendtSpm";
 
@@ -16,6 +16,9 @@ export class SPA {
     skjema: FormGroup; // Må definere skjema
     laster: boolean;
     etSpm: Spm; // Fungerer ikke enda
+
+    tommelOpp: number;
+    tommelNed: number;
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -54,60 +57,42 @@ export class SPA {
         this.visSkjema = false;
     };
 
+    // Lagrer nytt spm 
     lagreInnSendtSpm() {
-        
         var lagretSpm = new InnsendtSpm();
 
         lagretSpm.navn = this.skjema.value.navn;
         lagretSpm.epost = this.skjema.value.epost;
         lagretSpm.spm = this.skjema.value.spm;
 
-        const body: string = JSON.stringify(lagretSpm);
-        const headers = new HttpHeaders({ "Content-Type": "application/json" });
-
-        this._http.post("api/InnsendtSpmDomene", body, { headers: headers })
+        this._http.post("api/Spm", lagretSpm)
             .subscribe(
                 () => {
-                    console.log("Ferdig post api/InnsendtSpmDomene");
+                    console.log("Ferdig post api/Spm");
                 },
                 error => alert(error)
             );
     };
+
+    // her blir det endrede spm lagret, brukes til up- og downvotes
+    endreEtSpm(id: Number, innSpm: Spm) {
+        var nyVerdiOpp = innSpm.tommelOpp + 1;
+        innSpm.tommelOpp = nyVerdiOpp;
+
+        this._http.put("api/Spm/" + id, innSpm)
+            .subscribe(
+                () => {
+                    //this.hentAlleSpm();
+                    console.log("ferdig put-api/Spm" + id, innSpm);
+                },
+                error => alert(error),
+            );
+    }
 
     // TESTMNETODER SOM IKKE FUNGERER ......
 
     okVote($event) {
         console.log("Save button is clicked!", $event);
     }    
-    //Usikker om denne virker
-    hentEtSpm(id: number) {
-        this._http.get<Spm>("api/Spm/" + id)
-            .subscribe(
-                spm => {
-                    this.etSpm = spm;
-                },
-                error => alert(error)
-            );
-    };
-
-    // Øker 
-    okUpvote() {
-
-        const endretSpm = new Spm();
-        var tommel = 0;
-        endretSpm.tommelOpp = this.skjema.value.tommelOpp++;
-
-        const body: string = JSON.stringify(endretSpm);
-        const headers = new HttpHeaders({ "Content-Type": "application/json" });
-        this._http.put("api/Spm/" + this.skjema.value.id, body, { headers: headers })
-            .subscribe(
-                () => {
-                    this.hentAlleSpm(); // Oppdaterer da med en gang?
-                    console.log("Klikket på upvote");
-                },
-                error => alert(error),
-         );
-    };
-    
 }
 

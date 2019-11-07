@@ -8,20 +8,22 @@
       <table class="table table-border table-condensed">
         <!--<thread>-->
         <tr>
+          <th>Id</th>
           <th>Kategori</th>
           <th>Spørsmål</th>
           <th>Svar</th>
-          <th>Tommel opp</th>
+          <th >Tommel opp</th>
           <th>Tommel ned</th>
         </tr>
         <!--</thread>-->
         <tbody *ngFor="let spm of alleSpm">
           <tr>
+            <td>{{spm.id}}</td>
             <td>{{spm.kategori}}</td>
             <td>{{spm.sporsmal}}</td>
             <td>{{spm.svar}}</td>
-            <td><button class="btn btn-success" (click) ="okVote($event)">Upvotes {{spm.tommelOpp}}</button></td>
-            <td><button class="btn btn-success">DownVotes {{spm.tommelNed}} </button></td>
+            <td><button id="tommelOpp" class="btn btn-success" (click) ="endreEtSpm(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button></td>
+            <td><button id="tommelNed" class="btn btn-success">DownVotes {{spm.tommelNed}} </button></td>
           </tr>
         </tbody>
       </table>

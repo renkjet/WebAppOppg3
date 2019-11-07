@@ -8,19 +8,18 @@ using WebAppOppg3.Models;
 
 namespace WebAppOppg3
 {
-    public class DB
+    public class DB2
     {
         private readonly SpmContext _context;
-        public DB(SpmContext context)
+        public DB2(SpmContext context)
         {
             _context = context;
         }
 
         // Henter alle spørsmål
-        public List<SpmDomene> hentAlleSpm()
+        public List<Spm> hentAlleSpm()
         {
-            // merk, har oppdatert med Include for å laste uten lazy loading
-            List<SpmDomene> alleSpm = _context.Spm.Select(s => new SpmDomene()
+            List<Spm> alleSpm = _context.Spm.Select(s => new Spm()
             {
                 Id = s.Id,
                 Kategori = s.Kategori,
@@ -32,12 +31,11 @@ namespace WebAppOppg3
             return alleSpm;
         }
 
-
-        public SpmDomene hentEtSpm(int id)
+        public Spm hentEtSpm(int id)
         {
             Spm dbSpm = _context.Spm.FirstOrDefault(s => s.Id == id);
 
-            var etSpm = new SpmDomene()
+            var etSpm = new Spm()
             {
                 Id = dbSpm.Id,
                 Sporsmal = dbSpm.Sporsmal,
@@ -49,23 +47,9 @@ namespace WebAppOppg3
             return etSpm;
         }
 
-        // Henter spørsmål basert på kategori
-        public List<SpmDomene> hentSpmTilKategori(Kategori kategori)
-        {
-            List<SpmDomene> alleSpm = hentAlleSpm();
-            List<SpmDomene> spmTilKategori = new List<SpmDomene>();
-            foreach(SpmDomene spm in alleSpm)
-            {
-                if(spm.Kategori == kategori)
-                {
-                    spmTilKategori.Add(spm);
-                }
-            }
-            return spmTilKategori;
-        }
 
         // For å lagre øking i "upvotes" og "downvotes" til spørsmål
-        public bool endreSpm(int Id, SpmDomene innSpm)
+        public bool endreSpm(int Id, Spm innSpm)
         {
             // Finner korrekt spm
             Spm funnetSpm = _context.Spm.FirstOrDefault(s => s.Id == Id);
@@ -111,30 +95,5 @@ namespace WebAppOppg3
             }
             return true;
         }
-
-        // Øker "downvote" på spørsmål
-        public bool OkTommelNed(int Id, Spm innSpm)
-        {
-            // Finner korrekt spm
-            Spm funnetSpm = _context.Spm.FirstOrDefault(s => s.Id == Id);
-            if (funnetSpm == null)
-            {
-                return false;
-            }
-            // øker spørsmålet sin tommelOpp
-            funnetSpm.TommelNed = innSpm.TommelNed++;
-            try
-            {
-                // lagre spm
-                _context.SaveChanges();
-            }
-            catch (Exception feil)
-            {
-                return false;
-            }
-            return true;
-        }
-
-
     }
 }
