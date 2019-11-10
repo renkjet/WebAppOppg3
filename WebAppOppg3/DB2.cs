@@ -47,6 +47,24 @@ namespace WebAppOppg3
             return etSpm;
         }
 
+        // Henter spørsmål basert på kategori
+        public List<Spm> hentSpmTilKategori(String kategori)
+        {
+            var db = new DB2(_context);
+            
+            List<Spm> alleSpm = db.hentAlleSpm();
+            List<Spm> spmTilKategori = new List<Spm>();
+
+            foreach (Spm spm in alleSpm)
+            {
+                if (spm.Kategori == kategori)
+                {
+                    spmTilKategori.Add(spm);
+                }
+            }
+            return spmTilKategori;
+        }
+
 
         // For å lagre øking i "upvotes" og "downvotes" til spørsmål
         public bool endreSpm(int Id, Spm innSpm)

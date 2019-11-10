@@ -5,29 +5,43 @@
     <div class="col-md-6 col-md-offset" *ngIf="visSpm">
       <div *ngIf="laster">Laster spørsmål...</div>
       <button class="btn-primary btn-primary" (click)="tilSkjema()">Her kan du stille spørsmål</button>
-        <div class="accordion" id="accordionExample">
 
-          <div *ngFor="let spm of alleSpm">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    {{spm.sporsmal}}
-                  </button>
-                </h2>
-              </div>
+      <div>
+        <div *ngFor="let kat of alleKategorier">
+          <button class="btn btnKategori" (click)="hentSpmTilKategori(kat)">{{kat}}</button>
+          <div *ngFor="let spm of spmTilKat">
+            <div *ngIf="spm.kategori == kat">
+              <h4>{{spm.sporsmal}}</h4>
+              {{spm.svar}}
+              <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
+              <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#headingOne">
-                <div class="card-body">
-                  
-                  {{spm.svar}}
-                  <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
-                  <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
-                </div>
+      <div class="accordion" id="accordionExample">
+        <div>
+          <div class="card" *ngFor="let spm of alleSpm">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  {{spm.sporsmal}}
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#headingOne">
+              <div class="card-body">
+
+                {{spm.svar}}
+                <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
+                <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
       <div class="accordion" id="accordionExample">
         <div class="card">
@@ -76,28 +90,6 @@
       </div>
 
 
-      <table class="table table-border table-condensed">
-        <!--<thread>-->
-        <tr>
-          <th>Id</th>
-          <th>Kategori</th>
-          <th>Spørsmål</th>
-          <th>Svar</th>
-          <th>Tommel opp</th>
-          <th>Tommel ned</th>
-        </tr>
-        <!--</thread>-->
-        <tbody *ngFor="let spm of alleSpm">
-          <tr>
-            <td>{{spm.id}}</td>
-            <td>{{spm.kategori}}</td>
-            <td>{{spm.sporsmal}}</td>
-            <td>{{spm.svar}}</td>
-            <td><button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button></td>
-            <td><button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button></td>
-          </tr>
-        </tbody>
-      </table>
 
     </div>
   </div> <!--Avslutt div som viser spørsmål og svar-->

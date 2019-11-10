@@ -15,6 +15,8 @@ export class SPA {
     alleSpm: Array<Spm>; // Liste av alle spm
     skjema: FormGroup; // Må definere skjema
     laster: boolean;
+    spmTilKat: Array<Spm>;
+    alleKategorier: Array<String>;
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -29,7 +31,8 @@ export class SPA {
         this.laster = true;
         this.hentAlleSpm();
         this.visSpm = true;
-        this.visSkjema = false; 
+        this.visSkjema = false;
+        this.hentAlleKategorier();
     }
 
     hentAlleSpm() {
@@ -43,6 +46,29 @@ export class SPA {
             );
     };
 
+    hentAlleKategorier() {
+        this._http.get<String[]>("api/Kategori")
+            .subscribe(
+                kategori => {
+                    this.alleKategorier = kategori;
+                    this.laster = false;
+                },
+                error => alert(error)
+            );
+    };
+
+    hentSpmTilKategori(kategori: String) {
+        this._http.get<Spm[]>("api/Kategori/" + kategori)
+            .subscribe(
+                spmKat => {
+                    this.spmTilKat = spmKat;
+                    console.log("Ferdig get api/Kategori/" + kategori);
+                },
+                error => alert(error)
+            );
+    };
+
+
     tilSkjema() {
         this.visSpm = false;
         this.visSkjema = true;
@@ -52,6 +78,8 @@ export class SPA {
         this.visSpm = true;
         this.visSkjema = false;
     };
+
+
 
     // Lagrer nytt spm 
     lagreInnSendtSpm() {

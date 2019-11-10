@@ -19,20 +19,29 @@ namespace WebAppOppg3.Controllers
             _context = context;
         }
 
-        // Henter spørsmål basert på kategori
-        public List<Spm> hentSpmTilKategori(String kategori)
+        // GET api/Kategori
+        [HttpGet]
+        public JsonResult Get()
         {
             var db = new DB2(_context);
+            List<String> kategorier = new List<String>();
             List<Spm> alleSpm = db.hentAlleSpm();
-            List<Spm> spmTilKategori = new List<Spm>();
-            foreach (Spm spm in alleSpm)
+            foreach(Spm s in alleSpm)
             {
-                if (spm.Kategori == kategori)
-                {
-                    spmTilKategori.Add(spm);
+                if (!kategorier.Contains(s.Kategori)){
+                    kategorier.Add(s.Kategori);
                 }
             }
-            return spmTilKategori;
+            return Json(kategorier);
+        }
+
+        // GET api/Kategori/kategori
+        [HttpGet("{kategori}")]
+        public JsonResult Get(String kategori)
+        {
+            var db = new DB2(_context);
+            List<Spm> spmTilKat = db.hentSpmTilKategori(kategori);
+            return Json(spmTilKat);
         }
 
 
