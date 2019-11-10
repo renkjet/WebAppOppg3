@@ -74,7 +74,7 @@ export class SPA {
             .subscribe(
                 spm => {
                     this.etSpm = spm;
-                    console.log("Ferdig get api/Spm/" + spm);
+                    console.log("Ferdig get api/Spm/" + id);
                 },
                 error => alert(error)
             );
