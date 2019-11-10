@@ -17,6 +17,7 @@ export class SPA {
     laster: boolean;
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
+    etSpm: Spm;
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -68,6 +69,17 @@ export class SPA {
             );
     };
 
+    hentEtSpm(id: number) {
+        this._http.get<Spm>("api/Spm/" + id)
+            .subscribe(
+                spm => {
+                    this.etSpm = spm;
+                    console.log("Ferdig get api/Spm/" + spm);
+                },
+                error => alert(error)
+            );
+    };
+
 
     tilSkjema() {
         this.visSpm = false;
@@ -78,7 +90,6 @@ export class SPA {
         this.visSpm = true;
         this.visSkjema = false;
     };
-
 
 
     // Lagrer nytt spm 
@@ -106,7 +117,6 @@ export class SPA {
         this._http.put("api/Spm/" + id, innSpm)
             .subscribe(
                 () => {
-                    //this.hentAlleSpm();
                     console.log("ferdig put-api/Spm" + id, innSpm);
                 },
                 error => alert(error),
