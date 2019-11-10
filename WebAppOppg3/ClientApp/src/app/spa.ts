@@ -71,7 +71,7 @@ export class SPA {
     };
 
     // her blir det endrede spm lagret, brukes til up- og downvotes
-    endreEtSpm(id: Number, innSpm: Spm) {
+    okTommelOpp(id: Number, innSpm: Spm) {
         var nyVerdiOpp = innSpm.tommelOpp + 1;
         innSpm.tommelOpp = nyVerdiOpp;
 
@@ -83,6 +83,20 @@ export class SPA {
                 },
                 error => alert(error),
             );
-    }  
+    }
+
+    okTommelNed(id: Number, innSpm: Spm) {
+        var nyVerdiOpp = innSpm.tommelNed + 1;
+        innSpm.tommelNed = nyVerdiOpp;
+
+        this._http.put("api/Spm/" + id, innSpm)
+            .subscribe(
+                () => {
+                    //this.hentAlleSpm();
+                    console.log("ferdig put-api/Spm" + id, innSpm);
+                },
+                error => alert(error),
+            );
+    } 
 }
 
