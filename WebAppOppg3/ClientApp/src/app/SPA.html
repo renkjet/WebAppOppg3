@@ -16,6 +16,8 @@
               </div>
               <div *ngIf="spm.id == etSpm.id">
                 <p>{{spm.svar}}</p>
+                <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
+                <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
               </div>
 
 
