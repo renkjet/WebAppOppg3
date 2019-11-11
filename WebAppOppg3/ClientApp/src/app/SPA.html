@@ -5,6 +5,7 @@
     <div class="col-md-6 col-md-offset" *ngIf="visSpm">
       <div *ngIf="laster">Laster spørsmål...</div>
       <button class="btn btn-primary" (click)="tilSkjema()">Her kan du stille spørsmål</button>
+
       <div>
         <div *ngFor="let kat of alleKategorier"> <!--Looper gjennom alle kategorier-->
           <h2>{{kat}}</h2>
@@ -18,8 +19,25 @@
                 <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
                 <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
               </div>
+
+
             </ng-container>
           </div>
+          <!--
+            <button class="btn btnKategori" (click)="hentSpmTilKategori(kat)">{{kat}}</button>
+
+            <div *ngFor="let spm of spmTilKat">
+              <div *ngIf="spm.kategori == kat">
+                  <button class="btn btn-success" (click)="hentEtSpm(spm.id)">{{spm.sporsmal}}</button>
+                <div *ngIf="spm.id == etSpm.id">
+                  <div>{{spm.svar}}</div>
+                  <div>
+                    <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
+                    <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
