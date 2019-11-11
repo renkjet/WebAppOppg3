@@ -7,27 +7,13 @@
       <button class="btn btn-primary" (click)="tilSkjema()">Her kan du stille spørsmål</button>
 
       <div>
-        <div *ngFor="let kat of alleKategorier"> <!--Looper gjennom alle kategorier-->
-          <h2>{{kat}}</h2>
-          <div *ngFor=" let spm of alleSpm "> <!--Looper gjennom alle som og legger riktig spm under riktig kategori-->
-            <ng-container *ngIf="spm.kategori == kat">
-              <div (click)="hentEtSpm(spm.id)">
-                <h5 >{{spm.sporsmal}}</h5>
-              </div>
-              <div *ngIf="spm.id == etSpm.id">
-                <p>{{spm.svar}}</p>
-              </div>
-
-
-            </ng-container>
-          </div>
-          <!--
+        <div *ngFor="let kat of alleKategorier">
             <button class="btn btnKategori" (click)="hentSpmTilKategori(kat)">{{kat}}</button>
 
             <div *ngFor="let spm of spmTilKat">
               <div *ngIf="spm.kategori == kat">
                   <button class="btn btn-success" (click)="hentEtSpm(spm.id)">{{spm.sporsmal}}</button>
-                <div *ngIf="spm.id == etSpm.id">
+                <div *ngIf="spm.id == etSpm.id ">
                   <div>{{spm.svar}}</div>
                   <div>
                     <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
@@ -35,7 +21,7 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
