@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { Spm } from "./Spm";
@@ -9,7 +9,7 @@ import { InnsendtSpm } from "./InnsendtSpm";
     templateUrl: "SPA.html"
 })
 
-export class SPA {
+export class SPA implements OnInit {
     visSkjema: boolean; //ngIf visSkjema
     visSpm: boolean; // ngIf visSpm
     alleSpm: Array<Spm>; // Liste av alle spm
@@ -17,7 +17,8 @@ export class SPA {
     laster: boolean;
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
-    etSpm: Spm;
+    etSpm = Spm;
+   
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -73,11 +74,13 @@ export class SPA {
         this._http.get<Spm>("api/Spm/" + id)
             .subscribe(
                 spm => {
+                    this.etSpm = Spm;
                     this.etSpm = spm;
                     console.log("Ferdig get api/Spm/" + id);
                 },
                 error => alert(error)
-            );
+        );
+        console.log(this.etSpm)
     };
 
 
