@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { Spm } from "./Spm";
@@ -9,15 +9,16 @@ import { InnsendtSpm } from "./InnsendtSpm";
     templateUrl: "SPA.html"
 })
 
-export class SPA {
+export class SPA implements OnInit{
     visSkjema: boolean; //ngIf visSkjema
     visSpm: boolean; // ngIf visSpm
     alleSpm: Array<Spm>; // Liste av alle spm
     skjema: FormGroup; // Må definere skjema
     laster: boolean;
+    etSpm: Spm;
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
-    etSpm: Spm;
+    
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -31,10 +32,11 @@ export class SPA {
     ngOnInit() {
         this.laster = true;
         this.hentAlleSpm();
+        this.hentEtSpm(1); // Får ikke hentet ut noe hvis ikke denne settes i init
         this.visSpm = true;
         this.visSkjema = false;
         this.hentAlleKategorier();
-    }
+    };
 
     hentAlleSpm() {
         this._http.get<Spm[]>("api/Spm")
@@ -42,9 +44,11 @@ export class SPA {
                 spmObjekt => {
                     this.alleSpm = spmObjekt;
                     this.laster = false;
+                    console.log(this.alleSpm);
                 },
                 error => alert(error)
-            );
+        );
+        
     };
 
     hentAlleKategorier() {
@@ -75,9 +79,11 @@ export class SPA {
                 spm => {
                     this.etSpm = spm;
                     console.log("Ferdig get api/Spm/" + id);
+                    console.log(spm);
                 },
                 error => alert(error)
-            );
+        );
+
     };
 
 

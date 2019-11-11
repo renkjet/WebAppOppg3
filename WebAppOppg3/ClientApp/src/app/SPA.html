@@ -8,21 +8,20 @@
 
       <div>
         <div *ngFor="let kat of alleKategorier">
-            <button class="btn btnKategori" (click)="hentSpmTilKategori(kat)">{{kat}}</button>
-
-            <div *ngFor="let spm of spmTilKat">
-              <div *ngIf="spm.kategori == kat">
-                  <button class="btn btn-success" (click)="hentEtSpm(spm.id)">{{spm.sporsmal}}</button>
-                <div *ngIf="spm.id == etSpm.id ">
-                  <div>{{spm.svar}}</div>
-                  <div>
-                    <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
-                    <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h2>{{kat}}</h2>
+          <ng-container *ngFor="let spm of alleSpm">
+            <ng-container *ngIf="spm.kategori == kat">
+              <a (click)="hentEtSpm(spm.id)">
+                <h5>{{spm.sporsmal}}</h5>
+              </a>
+              <ng-container *ngIf="etSpm.id == spm.id">
+                <p>{{spm.svar}}</p>
+                <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
+                <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
+        </ng-container>
+        </ng-container>
+        </ng-container>
+      </div>
         </div>
       </div>
 
@@ -30,7 +29,7 @@
 
 
   <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema">
-    <button class="btn-primary btn-primary" (click)="tilSpm()">Oversikt over spørsmål og svar</button>
+    <button class="btn btn-primary" (click)="tilSpm()">Oversikt over spørsmål og svar</button>
     <!--Div som inneholder skjema for innsending av spørsmål-->
     <form [formGroup]="skjema" (ngSubmit)="lagreInnSendtSpm()">
       <input class="form-control" formControlName="id" type="hidden" />
@@ -56,7 +55,7 @@
         </p>
       </div>
       <div class="form-group">
-        <button type="submit" [disabled]="!skjema.valid" class="btn-primary btn-primary">Send inn spørsmålet</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
     </form>
   </div> <!-- Avslutter div som inneholder innsendingsskjema-->
