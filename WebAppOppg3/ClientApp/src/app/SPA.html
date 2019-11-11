@@ -1,32 +1,31 @@
 <h1>Kundeservice for VY</h1>
 
   <!--Div som viser spørsmål og svar-->
-  <div>
+  <div >
     <div class="col-md-6 col-md-offset" *ngIf="visSpm">
       <div *ngIf="laster">Laster spørsmål...</div>
       <button class="btn btn-primary" (click)="tilSkjema()">Her kan du stille spørsmål</button>
 
-      <div>
+      <div class="container" >
         <div *ngFor="let kat of alleKategorier">
           <h2>{{kat}}</h2>
           <ng-container *ngFor="let spm of alleSpm">
             <ng-container *ngIf="spm.kategori == kat">
               <a (click)="hentEtSpm(spm.id)">
-                <h5>{{spm.sporsmal}}</h5>
+                  <h5>{{spm.sporsmal}}</h5>
               </a>
-              <ng-container *ngIf="etSpm.id == spm.id">
+              <div *ngIf="etSpm.id == spm.id">
                 <p>{{spm.svar}}</p>
                 <button id="tommelOpp" class="btn btn-success" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
                 <button id="tommelNed" class="btn btn-success" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
-        </ng-container>
-        </ng-container>
-        </ng-container>
-      </div>
+        
+                </div>
+            </ng-container>
+          </ng-container>
         </div>
       </div>
-
+     </div>
   </div> <!--Avslutt div som viser spørsmål og svar-->
-
 
   <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema">
     <button class="btn btn-primary" (click)="tilSpm()">Oversikt over spørsmål og svar</button>
