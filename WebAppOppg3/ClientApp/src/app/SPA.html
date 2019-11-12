@@ -17,6 +17,7 @@
 
     <div class="accordion" id="accordionExample">
       <div *ngFor="let kat of alleKategorier">
+
         <h2>{{kat}}</h2>
 
         <div *ngFor="let spm of alleSpm">
@@ -52,21 +53,22 @@
               <ng-container *ngIf="spm.kategori == kat">
                 <div class="spm2Container">
                   <div (click)="hentEtSpm(spm.id)">
-                    <a data-toggle="collapse" data-target="#idid" aria-expanded="false" aria-controls="idid">
-                      {{spm.sporsmal}}
-                      <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
-                    </a>
+                      <a  data-toggle="collapse" data-target="#idid" aria-expanded="false" aria-controls="idid">
+                        {{spm.sporsmal}}
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                      </a>
+                    
                   </div>
                   <div class="collapse" id="idid">
                     <div *ngIf="etSpm.id == spm.id">
                       <p>{{spm.svar}}</p>
-
-                      <button id="tommelOpp" class="btn btnbtn" (click)="okTommelOpp(spm.id, spm)">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
+                      <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
+                        <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
                       </button>
-                      <button id="tommelNed" class="btn btnbtn" (click)="okTommelNed(spm.id, spm)">
+                      <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
                         <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
                       </button>
+                    
                     </div>
                   </div>
                 </div>

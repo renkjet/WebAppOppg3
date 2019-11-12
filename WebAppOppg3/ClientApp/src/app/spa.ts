@@ -73,6 +73,7 @@ export class SPA implements OnInit{
             );
     };
 
+    // Metode som brukes for å hente spm.svar
     hentEtSpm(id: number) {
         this._http.get<Spm>("api/Spm/" + id)
             .subscribe(
@@ -83,7 +84,6 @@ export class SPA implements OnInit{
                 },
                 error => alert(error)
         );
-
     };
 
 
