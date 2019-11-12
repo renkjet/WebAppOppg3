@@ -21,9 +21,12 @@
           <ng-container *ngFor="let spm of alleSpm">
             <ng-container *ngIf="spm.kategori == kat">
               <div class="spm2Container">
-                <a (click)="hentEtSpm(spm.id)">
-                  <h3>{{spm.sporsmal}}</h3>
-                </a>
+                <div (click)="hentEtSpm(spm.id)">
+                  <h3>
+                    {{spm.sporsmal}}
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </h3>
+                </div>
                 <div *ngIf="etSpm.id == spm.id">
                   <p>{{spm.svar}}</p>
 
@@ -70,7 +73,7 @@
         </p>
       </div>
       <div class="form-group">
-        <button class="btn btnbtn" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
+        <button class="btn btnbtn" id="btnSubmit" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
     </form>
   </div>
