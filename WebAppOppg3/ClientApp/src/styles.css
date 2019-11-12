@@ -2,15 +2,13 @@
 
 /* Provide sufficient contrast against white background */
 
-
 body{
   padding-top: 50px;
   padding-bottom: 20px;
-  padding-left: 15px;
+  padding-left: 45px;
   padding-right: 15px;
-  font-family: Helvetica, sans-serif;
+  font-family: Roboto, sans-serif;
 }
-
 
 a {
   color: #0366d6;
@@ -20,27 +18,48 @@ code {
   color: #e01a76;
 }
 
+/*Overskrift for kategorier*/
 h2 {
   font-weight: bold;
-  margin-bottom: 30px;
+  font-size: 40px;
+  margin-bottom: 25px;
+  margin-top: 40px;
+  padding-left: 20px;
+}
+
+/*Overskrift for spørsmålene*/
+h3 {
+  font-weight: 600; 
+  padding-top: 10px;
+
+  font-size: 20px;
+}
+
+p {
+  font-size: 20px;
 }
 
 .spmContainer {
   border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-bottom-color: black;
+  border-top-color: black;
+}
+.spm2Container {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-bottom-color: black;
+  border-top-color: black;
+  padding-left: 20px;
+  padding-bottom: 10px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.btnKategori{
+.btnbtn{
   background-color: #029678;
   color: #ffffff;
 }
 
-  .btnKategori:hover {
-    background-color: #024b3c;
-    color: #ffffff;
-  }
+.btnbtn:hover {
+  background-color: #024b3c;
+  color: #ffffff;
+}

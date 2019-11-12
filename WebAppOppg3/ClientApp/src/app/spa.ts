@@ -32,7 +32,7 @@ export class SPA implements OnInit{
     ngOnInit() {
         this.laster = true;
         this.hentAlleSpm();
-        this.hentEtSpm(1); // Får ikke hentet ut verken kategorier eller spm hvis ikke denne settes i init?
+        this.hentEtSpm(1); // Får ikke hentet verken kategorier eller spm hvis ikke denne settes i init?
         this.visSpm = true;
         this.visSkjema = false;
         this.hentAlleKategorier();
