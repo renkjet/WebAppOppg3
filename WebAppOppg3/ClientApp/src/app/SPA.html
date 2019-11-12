@@ -1,58 +1,70 @@
-<h1>Kundeservice for VY</h1>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-header pull-left">
+    <a href="#">
+      <img src="/assets/vylogo.png"  alt="vylogo">
+    </a>
+    <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSpm()">Ofte stilte spørsmål</button>
+    <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSkjema()">Send oss ditt spørsmål</button>
+  </div>
+</div>
 
-  <!--Div som viser spørsmål og svar-->
-  <div >
-    <div class="col-md-6 col-md-offset" *ngIf="visSpm">
-      <div *ngIf="laster">Laster spørsmål...</div>
-      <button class="btn btnbtn" (click)="tilSkjema()">Her kan du stille spørsmål</button>
+<!--Div som viser spørsmål og svar-->
+<div>
 
-      <div class="container" >
-        <div *ngFor="let kat of alleKategorier">
-          <h2>{{kat}}</h2>
-          <div class="spmContainer">
-            <ng-container *ngFor="let spm of alleSpm">
-              <ng-container *ngIf="spm.kategori == kat">
-                <div class="spm2Container">
-                  <a (click)="hentEtSpm(spm.id)">
-                    <h3>{{spm.sporsmal}}</h3>
-                  </a>
-                  <div *ngIf="etSpm.id == spm.id">
-                    <p>{{spm.svar}}</p>
-                    <button id="tommelOpp" class="btn btnbtn" (click)="okTommelOpp(spm.id, spm)">Upvotes {{spm.tommelOpp}}</button>
-                    <button id="tommelNed" class="btn btnbtn" (click)="okTommelNed(spm.id, spm)">DownVotes {{spm.tommelNed}} </button>
+  <div class="col-md-9 col-md-offset" *ngIf="visSpm">
+    <div *ngIf="laster">Laster spørsmål...</div>
+    <h1>Spørsmål og svar</h1>
+    <div class="container">
+      <div *ngFor="let kat of alleKategorier">
+        <h2>{{kat}}</h2>
+        <div class="spmContainer">
+          <ng-container *ngFor="let spm of alleSpm">
+            <ng-container *ngIf="spm.kategori == kat">
+              <div class="spm2Container">
+                <a (click)="hentEtSpm(spm.id)">
+                  <h3>{{spm.sporsmal}}</h3>
+                </a>
+                <div *ngIf="etSpm.id == spm.id">
+                  <p>{{spm.svar}}</p>
 
-                  </div>
+                  <button id="tommelOpp" class="btn btnbtn" (click)="okTommelOpp(spm.id, spm)">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
+                  </button>
+                  <button id="tommelNed" class="btn btnbtn" (click)="okTommelNed(spm.id, spm)">
+                    <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
+                  </button>
                 </div>
-              </ng-container>
+              </div>
             </ng-container>
-          </div>
+          </ng-container>
         </div>
       </div>
-     </div>
-  </div> <!--Avslutt div som viser spørsmål og svar-->
+    </div>
+  </div>
+</div> <!--Avslutt div som viser spørsmål og svar-->
 
-  <div class="col-sm-4 col-sm-offset-2" *ngIf="visSkjema">
-    <button class="btn btnbtn" (click)="tilSpm()">Oversikt over spørsmål og svar</button>
-    <!--Div som inneholder skjema for innsending av spørsmål-->
-    <form [formGroup]="skjema" (ngSubmit)="lagreInnSendtSpm()">
+<div *ngIf="visSkjema">
+  <h1>Hva kan vi hjelpe deg med? </h1>
+  <div class="col-sm-6 col-sm-offset-4">
+    <form class="skjema" [formGroup]="skjema" (ngSubmit)="lagreInnSendtSpm()">
       <input class="form-control" formControlName="id" type="hidden" />
       <div class="form-group">
         <label>Navn</label>
-        <input class="form-control" formControlName="navn" />
+        <input class="form-control" formControlName="navn" placeholder="Navn" />
         <p class="alert alert-warning" [hidden]="skjema.controls.navn.valid || (skjema.controls.navn.pristine && !submitted)">
           Vennligst oppgi navn.
         </p>
       </div>
       <div class="form-group">
         <label>Epost</label>
-        <input class="form-control" formControlName="epost" />
+        <input class="form-control" formControlName="epost" placeholder="Epost" />
         <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
           Vennligst oppgi din epost
         </p>
       </div>
       <div class="form-group">
-        <label>Sporsmal</label>
-        <input class="form-control" formControlName="spm" />
+        <label>Spørsmål</label>
+        <textarea class="form-control" formControlName="spm" rows="4" placeholder="Skriv inn ditt spørsmål her..."></textarea>
         <p class="alert alert-warning" [hidden]="skjema.controls.spm.valid || (skjema.controls.spm.pristine && !submitted)">
           Vennligst fortell oss hva du lurer på.
         </p>
@@ -61,5 +73,5 @@
         <button class="btn btnbtn" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
     </form>
-  </div> <!-- Avslutter div som inneholder innsendingsskjema-->
-
+  </div>
+</div> 

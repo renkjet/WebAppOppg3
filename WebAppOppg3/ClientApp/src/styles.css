@@ -3,10 +3,10 @@
 /* Provide sufficient contrast against white background */
 
 body{
-  padding-top: 50px;
-  padding-bottom: 20px;
-  padding-left: 45px;
-  padding-right: 15px;
+  margin-left:45px;
+  margin-top: 50px;
+  margin-bottom: 45px;
+  margin-right: 15px;
   font-family: Roboto, sans-serif;
 }
 
@@ -14,16 +14,41 @@ a {
   color: #0366d6;
 }
 
+img{
+  width: 25%;
+}
+
+.navbar {
+  padding-bottom: 40px;
+  border-bottom: 1px;
+  border-bottom-color: black;
+}
+
+#navItem {
+  font-size: 20px;
+}
+
+  #navItem:hover {
+    background-color: rgba(2, 150, 120, 0.37);
+
+  }
+
 code {
   color: #e01a76;
 }
 
+h1 {
+  font-size: 45px;
+  font-weight: bold;
+  padding-left: 25px;
+  padding-bottom: 15px;
+}
 /*Overskrift for kategorier*/
 h2 {
   font-weight: bold;
   font-size: 40px;
-  margin-bottom: 25px;
-  margin-top: 40px;
+  padding-bottom: 25px;
+  padding-top: 40px;
   padding-left: 20px;
 }
 
@@ -31,8 +56,24 @@ h2 {
 h3 {
   font-weight: 600; 
   padding-top: 10px;
-
   font-size: 20px;
+}
+
+.skjema {
+  padding-left: 20px;
+}
+
+.form-control {
+  font-size: 15px;
+}
+
+
+label {
+  font-size: 20px;
+}
+
+.alert {
+  font-size: 15px;
 }
 
 p {
@@ -54,6 +95,14 @@ p {
   padding-bottom: 10px;
 }
 
+.glyphicon {
+  font-size: 20px;
+}
+
+.span {
+  font-family: Roboto, sans-serif;
+}
+
 .btnbtn{
   background-color: #029678;
   color: #ffffff;
@@ -63,3 +112,4 @@ p {
   background-color: #024b3c;
   color: #ffffff;
 }
+
