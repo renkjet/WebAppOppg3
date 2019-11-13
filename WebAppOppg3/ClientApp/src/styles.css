@@ -10,11 +10,6 @@ body{
   font-family: Roboto, sans-serif;
 }
 
-#spmdiv {
-  font-weight: 600;
-  padding-top: 10px;
-  font-size: 20px;
-}
 
 img{
   width: 25%;
@@ -42,13 +37,13 @@ code {
 h1 {
   font-size: 45px;
   font-weight: bold;
-  padding-left: 25px;
+  padding-left: 20px;
   padding-bottom: 15px;
 }
 /*Overskrift for kategorier*/
 h2 {
-  font-weight: bold;
   font-size: 40px;
+  font-weight: bold;
   padding-bottom: 25px;
   padding-top: 40px;
   padding-left: 20px;
@@ -89,13 +84,26 @@ p {
   border-bottom-color: black;
   border-top-color: black;
 }
+
 .spm2Container {
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-bottom-color: black;
   border-top-color: black;
+}
+
+#spmOverskrift {
+  font-weight: 600;
+  font-size: 20px;
   padding-left: 20px;
+  padding-top: 10px;
   padding-bottom: 10px;
+}
+
+#spmSvar {
+  font-size: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
 }
 
 .glyphicon {
@@ -107,6 +115,7 @@ p {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  float: right;
 
 }
 
@@ -115,18 +124,25 @@ p {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-
+  float: right;
 }
 
-.tommel {
-  margin-right: 50px;
+.tomler {
+
+  padding-bottom: 20px;
+  margin-left: 20px;
 
 }
 .span {
   font-family: Roboto, sans-serif;
 }
 
-.btnbtn{
+#forbedre{
+  font-size: 15px;
+  padding-left: 20px;
+}
+
+.btnbtn {
   background-color: #029678;
   color: #ffffff;
 }

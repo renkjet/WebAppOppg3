@@ -1,45 +1,71 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-header pull-left">
-    <a href="#">
-      <img src="/assets/vylogo.png" alt="vylogo">
-    </a>
-    <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSpm()">Ofte stilte spørsmål</button>
-    <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSkjema()">Send oss ditt spørsmål</button>
-  </div>
+
+      
+          <a href="#">
+            <img src="/assets/vylogo.png" alt="vylogo">
+          </a>
+        
+          <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSpm()">Ofte stilte spørsmål</button>
+        
+          <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSkjema()">Send oss ditt spørsmål</button>
+        
+        </div>
+
 </div>
 
 <!--Div som viser spørsmål og svar-->
-<div class="col-md-9 col-md-offset" *ngIf="visSpm">
+<div class="col-md-8 col-md-offset" *ngIf="visSpm">
   <div *ngIf="laster">Laster spørsmål...</div>
-  <h1>Spørsmål og svar</h1>
-
   <div class="container">
+    <h1>Spørsmål og svar</h1>
     <div *ngFor="let kat of alleKategorier">
       <h2>{{kat}}</h2>
       <div class="spmContainer">
         <div *ngFor="let spm of alleSpm">
           <ng-container *ngIf="spm.kategori == kat">
-            <div class="spm2Container">
+            <div class="spm2Container " >
               <div (click)="hentEtSpm2(spm.id)">
-                <div id="spmdiv">
+                <div class="row" id="spmOverskrift">
+                  <div class="col-10">
                     {{spm.sporsmal}}
-                  <div *ngIf="state[spm.id]">
-                    <span class="glyphicon glyphicon-chevron-up"></span>
                   </div>
-                  <div *ngIf="!state[spm.id]">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  <div class="col-1">
+                    <div *ngIf="state[spm.id]">
+                      <span class="glyphicon glyphicon-chevron-up"></span>
+                    </div>
+                    <div *ngIf="!state[spm.id]">
+                      <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div>
                 <div *ngIf="state[spm.id]">
-                  <p>{{spm.svar}}</p>
-                  <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
-                    <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
-                  </button>
-                  <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
-                    <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
-                  </button>
+                  <div class="row">
+                    <div class="col-10">
+                      <p id="spmSvar">{{spm.svar}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <p id="forbedre">
+                        Fikk du svar på det du lurte på? 
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row tomler" >
+                    <div class="col-2">
+                      <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
+                        <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
+                        <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
