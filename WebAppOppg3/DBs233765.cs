@@ -8,10 +8,10 @@ using WebAppOppg3.Models;
 
 namespace WebAppOppg3
 {
-    public class DB2
+    public class DBs233765
     {
         private readonly SpmContext _context;
-        public DB2(SpmContext context)
+        public DBs233765(SpmContext context)
         {
             _context = context;
         }
@@ -50,7 +50,7 @@ namespace WebAppOppg3
         // Henter spørsmål basert på kategori
         public List<Spm> hentSpmTilKategori(String kategori)
         {
-            var db = new DB2(_context);
+            var db = new DBs233765(_context);
             
             List<Spm> alleSpm = db.hentAlleSpm();
             List<Spm> spmTilKategori = new List<Spm>();

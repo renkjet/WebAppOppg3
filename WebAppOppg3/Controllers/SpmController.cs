@@ -23,7 +23,7 @@ namespace WebAppOppg3.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var db = new DB2(_context);
+            var db = new DBs233765(_context);
             List<Spm> alleSpm = db.hentAlleSpm();
             return Json(alleSpm);
         }
@@ -32,7 +32,7 @@ namespace WebAppOppg3.Controllers
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var db = new DB2(_context);
+            var db = new DBs233765(_context);
             Spm spm = db.hentEtSpm(id);
             return Json(spm);
         }
@@ -43,7 +43,7 @@ namespace WebAppOppg3.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new DB2(_context);
+                var db = new DBs233765(_context);
                 bool OK = db.lagreInnsendtSpm(innSpm);
                 if (OK)
                 {
@@ -59,7 +59,7 @@ namespace WebAppOppg3.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new DB2(_context);
+                var db = new DBs233765(_context);
                 bool OK = db.endreSpm(id, innSpm);
                 if (OK)
                 {

@@ -23,7 +23,7 @@ namespace WebAppOppg3.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var db = new DB2(_context);
+            var db = new DBs233765(_context);
             List<String> kategorier = new List<String>();
             List<Spm> alleSpm = db.hentAlleSpm();
             foreach(Spm s in alleSpm)

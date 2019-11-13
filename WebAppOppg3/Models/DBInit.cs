@@ -65,7 +65,7 @@ namespace WebAppOppg3.Models
 
             new Spm
             {
-                Sporsmal = "Hvordan bestiller jeg billett hvis jeg har spesialbehov for reisenn?",
+                Sporsmal = "Hvordan bestiller jeg billett hvis jeg har spesialbehov for reisen?",
                 Svar = "Har du spesielle behov for togreisen, er det viktig at du bestiller billetten gjennom " +
                 "kundeservice eller på en betjent stasjon. Tjenester som rullestolplass og gratis plass for " +
                 "førerhund/servicehund kan i dag ikke bestilles på nettet, men funksjonshemmede får likevel " +
