@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-header pull-left">
     <a href="#">
-      <img src="/assets/vylogo.png"  alt="vylogo">
+      <img src="/assets/vylogo.png" alt="vylogo">
     </a>
     <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSpm()">Ofte stilte spørsmål</button>
     <button type="button" class="btn btn-default navbar-btn" id="navItem" (click)="tilSkjema()">Send oss ditt spørsmål</button>
@@ -9,76 +9,53 @@
 </div>
 
 <!--Div som viser spørsmål og svar-->
-<div>
 
-  <div class="col-md-9 col-md-offset" *ngIf="visSpm">
-    <div *ngIf="laster">Laster spørsmål...</div>
-    <h1>Spørsmål og svar</h1>
 
-    <div class="accordion" id="accordionExample">
-      <div *ngFor="let kat of alleKategorier">
+<div class="col-md-9 col-md-offset" *ngIf="visSpm">
+  <div *ngIf="laster">Laster spørsmål...</div>
+  <h1>Spørsmål og svar</h1>
 
-        <h2>{{kat}}</h2>
 
+  <div class="container">
+    <div *ngFor="let kat of alleKategorier">
+      <h2>{{kat}}</h2>
+      <div class="spmContainer">
         <div *ngFor="let spm of alleSpm">
           <ng-container *ngIf="spm.kategori == kat">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h2 class="mb-0" (click)="hentEtSpm(spm.id)">
-                  <button class="btn" data-toggle="collapse" data-target="#ididid" aria-expanded="false" aria-controls="ididid">
-                    {{spm.sporsmal}}
-                  </button>
-                </h2>
+            <div class="spm2Container">
+              <div (click)="hentEtSpm2(spm.id)">
+
+                {{spm.sporsmal}}
+                <!--
+                <div *ngIf="state[spm.id] == true">
+                  <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <ng-container *ngIf="state[spm.id] == false;">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </ng-container>
+                    -->
+
               </div>
               <div>
-                <div id="ididid" class="collapse" data-parent="#accordionExample">
-                  <div *ngIf="etSpm.id == spm.id">
-                    <div class="card-body">
-                      {{spm.svar}}
-                    </div>
-                  </div>
+                <div *ngIf="state[spm.id]">
+                  <p>{{spm.svar}}</p>
+                  <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
+                    <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
+                  </button>
+                  <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
+                    <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
+                  </button>
+
                 </div>
               </div>
             </div>
           </ng-container>
         </div>
       </div>
-      </div>
-
-      <div class="container">
-        <div *ngFor="let kat of alleKategorier">
-          <h2>{{kat}}</h2>
-          <div class="spmContainer">
-            <ng-container *ngFor="let spm of alleSpm">
-              <ng-container *ngIf="spm.kategori == kat">
-                <div class="spm2Container">
-                  <div (click)="hentEtSpm(spm.id)">
-                      <a  data-toggle="collapse" data-target="#idid" aria-expanded="false" aria-controls="idid">
-                        {{spm.sporsmal}}
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                      </a>
-                    
-                  </div>
-                  <div class="collapse" id="idid">
-                    <div *ngIf="etSpm.id == spm.id">
-                      <p>{{spm.svar}}</p>
-                      <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
-                        <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}
-                      </button>
-                      <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
-                      </button>
-                    
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-          </div>
-        </div>
-      </div>
     </div>
-</div> <!--Avslutt div som viser spørsmål og svar-->
+  </div>
+</div>  <!--Avslutt div som viser spørsmål og svar-->
+
 
 <div *ngIf="visSkjema">
   <h1>Hva kan vi hjelpe deg med? </h1>
@@ -111,4 +88,4 @@
       </div>
     </form>
   </div>
-</div> 
+</div>

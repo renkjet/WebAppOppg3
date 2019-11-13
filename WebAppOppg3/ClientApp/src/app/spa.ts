@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { Spm } from "./Spm";
@@ -10,15 +10,15 @@ import { InnsendtSpm } from "./InnsendtSpm";
 })
 
 export class SPA implements OnInit{
-    visSkjema: boolean; //ngIf visSkjema
-    visSpm: boolean; // ngIf visSpm
-    alleSpm: Array<Spm>; // Liste av alle spm
-    skjema: FormGroup; // Må definere skjema
+    visSkjema: boolean; //ngIf div visSkjema
+    visSpm: boolean; // ngIf div visSpm
+    alleSpm: Array<Spm>; 
+    skjema: FormGroup; 
     laster: boolean;
     etSpm: Spm;
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
-    
+    @Input() state = {};
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -32,7 +32,7 @@ export class SPA implements OnInit{
     ngOnInit() {
         this.laster = true;
         this.hentAlleSpm();
-        this.hentEtSpm(1); // Får ikke hentet verken kategorier eller spm hvis ikke denne settes i init?
+        //this.hentEtSpm(1); // Får ikke hentet verken kategorier eller spm hvis ikke denne settes i init?
         this.visSpm = true;
         this.visSkjema = false;
         this.hentAlleKategorier();
@@ -57,6 +57,7 @@ export class SPA implements OnInit{
                 kategori => {
                     this.alleKategorier = kategori;
                     this.laster = false;
+                    console.log(kategori);
                 },
                 error => alert(error)
             );
@@ -80,11 +81,24 @@ export class SPA implements OnInit{
                 spm => {
                     this.etSpm = spm;
                     console.log("Ferdig get api/Spm/" + id);
-                    console.log(spm);
+                    
                 },
                 error => alert(error)
         );
     };
+
+    hentEtSpm2(id: number) {
+        const nyState = { ...this.state };
+        for (let key of Object.keys(nyState)) {
+            nyState[key] = false;
+        }
+        nyState[id] = !this.state[id];
+        this.state = nyState;
+        console.log(this.state);
+    };
+
+
+
 
 
     tilSkjema() {
