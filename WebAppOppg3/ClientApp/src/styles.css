@@ -10,8 +10,7 @@ body{
   font-family: Roboto, sans-serif;
 }
 
-a {
-  color: #0366d6;
+#spmdiv {
   font-weight: 600;
   padding-top: 10px;
   font-size: 20px;
@@ -108,7 +107,13 @@ p {
   padding-right: 10px;
 padding-top: 10px;
 padding-bottom: 10px;
-  float: right;
+}
+
+.glyphicon-chevron-up {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .tommel {

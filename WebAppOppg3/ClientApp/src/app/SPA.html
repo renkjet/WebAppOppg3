@@ -9,12 +9,9 @@
 </div>
 
 <!--Div som viser spørsmål og svar-->
-
-
 <div class="col-md-9 col-md-offset" *ngIf="visSpm">
   <div *ngIf="laster">Laster spørsmål...</div>
   <h1>Spørsmål og svar</h1>
-
 
   <div class="container">
     <div *ngFor="let kat of alleKategorier">
@@ -24,17 +21,15 @@
           <ng-container *ngIf="spm.kategori == kat">
             <div class="spm2Container">
               <div (click)="hentEtSpm2(spm.id)">
-
-                {{spm.sporsmal}}
-                <!--
-                <div *ngIf="state[spm.id] == true">
-                  <span class="glyphicon glyphicon-chevron-up"></span>
+                <div id="spmdiv">
+                    {{spm.sporsmal}}
+                  <div *ngIf="state[spm.id]">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  </div>
+                  <div *ngIf="!state[spm.id]">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
                 </div>
-                <ng-container *ngIf="state[spm.id] == false;">
-                  <span class="glyphicon glyphicon-chevron-down"></span>
-                </ng-container>
-                    -->
-
               </div>
               <div>
                 <div *ngIf="state[spm.id]">
@@ -45,7 +40,6 @@
                   <button id="tommelNed" class="btn tommel btnbtn" (click)="okTommelNed(spm.id, spm)">
                     <span class="glyphicon glyphicon-thumbs-down"></span> {{spm.tommelNed}}
                   </button>
-
                 </div>
               </div>
             </div>
@@ -87,5 +81,8 @@
         <button class="btn btnbtn" id="btnSubmit" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
     </form>
+    <div>
+
+    </div>
   </div>
 </div>
