@@ -34,16 +34,5 @@ namespace WebAppOppg3.Controllers
             }
             return Json(kategorier);
         }
-
-        // GET api/Kategori/kategori
-        [HttpGet("{kategori}")]
-        public JsonResult Get(String kategori)
-        {
-            var db = new DB2(_context);
-            List<Spm> spmTilKat = db.hentSpmTilKategori(kategori);
-            return Json(spmTilKat);
-        }
-
-
     }
 }

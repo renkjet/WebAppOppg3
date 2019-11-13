@@ -25,7 +25,7 @@
         <div *ngFor="let spm of alleSpm">
           <ng-container *ngIf="spm.kategori == kat">
             <div class="spm2Container " >
-              <div (click)="hentEtSpm2(spm.id)">
+              <div (click)="hentEtSpm(spm.id)">
                 <div class="row" id="spmOverskrift">
                   <div class="col-10">
                     {{spm.sporsmal}}

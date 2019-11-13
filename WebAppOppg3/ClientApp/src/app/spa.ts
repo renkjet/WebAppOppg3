@@ -15,11 +15,11 @@ export class SPA implements OnInit{
     alleSpm: Array<Spm>; 
     skjema: FormGroup; 
     laster: boolean;
-    etSpm: Spm;
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
     @Input() state = {};
     bekreftelse: boolean;
+
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -33,23 +33,21 @@ export class SPA implements OnInit{
     ngOnInit() {
         this.laster = true;
         this.hentAlleSpm();
-        //this.hentEtSpm(1); // Får ikke hentet verken kategorier eller spm hvis ikke denne settes i init?
+        this.hentAlleKategorier();
         this.visSpm = true;
         this.visSkjema = false;
-        this.hentAlleKategorier();
     };
 
     hentAlleSpm() {
         this._http.get<Spm[]>("api/Spm")
             .subscribe(
-                spmObjekt => {
-                    this.alleSpm = spmObjekt;
+                spm => {
+                    this.alleSpm = spm;
                     this.laster = false;
                     console.log(this.alleSpm);
                 },
                 error => alert(error)
         );
-        
     };
 
     hentAlleKategorier() {
@@ -64,42 +62,7 @@ export class SPA implements OnInit{
             );
     };
 
-    hentSpmTilKategori(kategori: String) {
-        this._http.get<Spm[]>("api/Kategori/" + kategori)
-            .subscribe(
-                spmKat => {
-                    this.spmTilKat = spmKat;
-                    console.log("Ferdig get api/Kategori/" + kategori);
-                },
-                error => alert(error)
-            );
-    };
-
-    settBekreftelse() {
-        this.bekreftelse = true;
-        this.skjema.setValue({
-            id: "",
-            navn: "",
-            epost: "",
-            spm: ""
-        });
-        this.skjema.markAsPristine();
-    };
-
-    // Metode som brukes for å hente spm.svar
     hentEtSpm(id: number) {
-        this._http.get<Spm>("api/Spm/" + id)
-            .subscribe(
-                spm => {
-                    this.etSpm = spm;
-                    console.log("Ferdig get api/Spm/" + id);
-                    
-                },
-                error => alert(error)
-        );
-    };
-
-    hentEtSpm2(id: number) {
         const nyState = { ...this.state };
         for (let key of Object.keys(nyState)) {
             nyState[key] = false;
@@ -109,39 +72,7 @@ export class SPA implements OnInit{
         console.log(this.state);
     };
 
-
-
-
-
-    tilSkjema() {
-        this.visSpm = false;
-        this.visSkjema = true;
-    };
-
-    tilSpm() {
-        this.visSpm = true;
-        this.visSkjema = false;
-    };
-
-
-    // Lagrer nytt spm 
-    lagreInnSendtSpm() {
-        var lagretSpm = new InnsendtSpm();
-
-        lagretSpm.navn = this.skjema.value.navn;
-        lagretSpm.epost = this.skjema.value.epost;
-        lagretSpm.spm = this.skjema.value.spm;
-
-        this._http.post("api/Spm", lagretSpm)
-            .subscribe(
-                () => {
-                    console.log("Ferdig post api/Spm");
-                },
-                error => alert(error)
-            );
-    };
-
-    // her blir det endrede spm lagret, brukes til up- og downvotes
+    // endrede spm blir sendt til kontroller, brukes til up- og downvotes
     okTommelOpp(id: Number, innSpm: Spm) {
         var nyVerdiOpp = innSpm.tommelOpp + 1;
         innSpm.tommelOpp = nyVerdiOpp;
@@ -167,6 +98,50 @@ export class SPA implements OnInit{
                 },
                 error => alert(error),
             );
-    } 
+    }
+
+    // Lagrer nytt spm 
+    lagreInnSendtSpm() {
+        var lagretSpm = new InnsendtSpm();
+
+        lagretSpm.navn = this.skjema.value.navn;
+        lagretSpm.epost = this.skjema.value.epost;
+        lagretSpm.spm = this.skjema.value.spm;
+
+        this._http.post("api/Spm", lagretSpm)
+            .subscribe(
+                () => {
+                    console.log("Ferdig post api/Spm");
+                },
+                error => alert(error)
+            );
+    };
+
+    // Tilbakemelding til bruker når sspørsmål er sendt inn
+    settBekreftelse() {
+        this.bekreftelse = true;
+        this.skjema.setValue({
+            id: "",
+            navn: "",
+            epost: "",
+            spm: ""
+        });
+        this.skjema.markAsPristine();
+    };
+
+    tilSkjema() {
+        this.visSpm = false;
+        this.visSkjema = true;
+        this.bekreftelse = false; 
+    };
+
+    tilSpm() {
+        this.visSpm = true;
+        this.visSkjema = false;
+    };
+
+
+
+
 }
 

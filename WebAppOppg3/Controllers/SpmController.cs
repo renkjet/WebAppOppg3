@@ -68,7 +68,5 @@ namespace WebAppOppg3.Controllers
             }
             return Json("Kunne ikke endre spørsmålet i DB");
         }
-      
-
     }
 }
