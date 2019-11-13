@@ -19,6 +19,7 @@ export class SPA implements OnInit{
     spmTilKat: Array<Spm>;
     alleKategorier: Array<String>;
     @Input() state = {};
+    bekreftelse: boolean;
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -72,6 +73,17 @@ export class SPA implements OnInit{
                 },
                 error => alert(error)
             );
+    };
+
+    settBekreftelse() {
+        this.bekreftelse = true;
+        this.skjema.setValue({
+            id: "",
+            navn: "",
+            epost: "",
+            spm: ""
+        });
+        this.skjema.markAsPristine();
     };
 
     // Metode som brukes for å hente spm.svar

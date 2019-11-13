@@ -78,11 +78,11 @@
         </p>
       </div>
       <div class="form-group">
-        <button class="btn btnbtn" id="btnSubmit" type="submit" [disabled]="!skjema.valid">Send inn spørsmålet</button>
+        <button class="btn btnbtn" id="btnSubmit" type="submit" (click)="settBekreftelse()" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
     </form>
-    <div>
-
+    <div *ngIf="bekreftelse">
+      Takk for din henvendelse! Vi vil komme tilbake til deg så snart vi kan.
     </div>
   </div>
 </div>
