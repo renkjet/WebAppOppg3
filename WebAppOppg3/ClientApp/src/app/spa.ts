@@ -114,20 +114,22 @@ export class SPA implements OnInit{
                     console.log("Ferdig post api/Spm");
                 },
                 error => alert(error)
-            );
-    };
+        );
 
-    // Tilbakemelding til bruker når sspørsmål er sendt inn
-    settBekreftelse() {
-        this.bekreftelse = true;
+        this.skjema.markAsPristine();
         this.skjema.setValue({
             id: "",
             navn: "",
             epost: "",
             spm: ""
         });
-        this.skjema.markAsPristine();
     };
+
+    // Tilbakemelding til bruker når sspørsmål er sendt inn
+    settBekreftelse() {
+        this.bekreftelse = true;
+    };
+    
 
     tilSkjema() {
         this.visSpm = false;
