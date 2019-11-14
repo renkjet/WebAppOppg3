@@ -10,7 +10,6 @@ body{
   font-family: Roboto, sans-serif;
 }
 
-
 img{
   width: 25%;
 }
@@ -25,10 +24,9 @@ img{
   font-size: 20px;
 }
 
-  #navItem:hover {
-    background-color: rgba(2, 150, 120, 0.37);
-
-  }
+#navItem:hover {
+  background-color: rgba(2, 150, 120, 0.37);
+}
 
 code {
   color: #e01a76;
@@ -64,7 +62,6 @@ h3 {
   font-size: 15px;
 }
 
-
 label {
   font-size: 20px;
 }
@@ -76,7 +73,6 @@ label {
 p {
   font-size: 20px;
 }
-
 
 .spmContainer {
   border-top: 1px solid;
@@ -127,8 +123,13 @@ p {
   float: right;
 }
 
-.tomler {
+/*Tallstørrelse i vote-knappene*/
+.tommel{
+  font-size: 15px;
+}
 
+/*Raden med tommelknapper*/
+.tomler {
   padding-bottom: 20px;
   margin-left: 20px;
 

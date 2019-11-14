@@ -106,9 +106,9 @@
       <div class="form-group">
         <button class="btn btnbtn" id="btnSubmit" type="submit" (click)="settBekreftelse()" [disabled]="!skjema.valid">Send inn spørsmålet</button>
       </div>
+      <div *ngIf="bekreftelse">
+        <div class="alert alert-success" role="alert">Takk for din henvendelse! Vi vil komme tilbake til deg snarest.</div>
+      </div>
     </form>
-    <div *ngIf="bekreftelse">
-      Takk for din henvendelse! Vi vil komme tilbake til deg så snart vi kan.
-    </div>
   </div>
 </div>
