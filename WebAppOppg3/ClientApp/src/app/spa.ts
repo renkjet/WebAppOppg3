@@ -115,7 +115,6 @@ export class SPA implements OnInit{
                 },
                 error => alert(error)
         );
-
         this.skjema.markAsPristine();
         this.skjema.setValue({
             id: "",
