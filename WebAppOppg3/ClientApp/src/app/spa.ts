@@ -9,7 +9,7 @@ import { InnsendtSpm } from "./InnsendtSpm";
     templateUrl: "SPA.html"
 })
 
-export class SPA {
+export class SPA  {
     visSkjema: boolean; //ngIf div visSkjema
     visSpm: boolean; // ngIf div visSpm
     alleSpm: Array<Spm>; 
