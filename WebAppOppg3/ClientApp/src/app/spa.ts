@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
+import { Component, Input } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Spm } from "./Spm";
 import { InnsendtSpm } from "./InnsendtSpm";
 
@@ -9,7 +9,7 @@ import { InnsendtSpm } from "./InnsendtSpm";
     templateUrl: "SPA.html"
 })
 
-export class SPA implements OnInit{
+export class SPA {
     visSkjema: boolean; //ngIf div visSkjema
     visSpm: boolean; // ngIf div visSpm
     alleSpm: Array<Spm>; 
@@ -62,6 +62,7 @@ export class SPA implements OnInit{
             );
     };
 
+    // 
     hentEtSpm(id: number) {
         const nyState = { ...this.state };
         for (let key of Object.keys(nyState)) {
@@ -69,7 +70,6 @@ export class SPA implements OnInit{
         }
         nyState[id] = !this.state[id];
         this.state = nyState;
-        console.log(this.state);
     };
 
     // endrede spm blir sendt til kontroller, brukes til up- og downvotes
@@ -93,14 +93,12 @@ export class SPA implements OnInit{
         this._http.put("api/Spm/" + id, innSpm)
             .subscribe(
                 () => {
-                    //this.hentAlleSpm();
                     console.log("ferdig put-api/Spm" + id, innSpm);
                 },
                 error => alert(error),
             );
     }
 
-    // Lagrer nytt spm 
     lagreInnSendtSpm() {
         var lagretSpm = new InnsendtSpm();
 
@@ -115,21 +113,21 @@ export class SPA implements OnInit{
                 },
                 error => alert(error)
         );
-        this.skjema.markAsPristine();
         this.skjema.setValue({
             id: "",
             navn: "",
             epost: "",
             spm: ""
         });
+        this.skjema.markAsPristine();
     };
 
-    // Tilbakemelding til bruker når sspørsmål er sendt inn
+    // Tilbakemelding til bruker når henvendelse er sendt inn
     settBekreftelse() {
         this.bekreftelse = true;
     };
-    
 
+    // Metoder som bytter div
     tilSkjema() {
         this.visSpm = false;
         this.visSkjema = true;
@@ -140,9 +138,5 @@ export class SPA implements OnInit{
         this.visSpm = true;
         this.visSkjema = false;
     };
-
-
-
-
 }
 

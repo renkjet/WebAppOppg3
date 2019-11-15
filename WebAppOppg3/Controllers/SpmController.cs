@@ -28,15 +28,6 @@ namespace WebAppOppg3.Controllers
             return Json(alleSpm);
         }
 
-        // GET api/Spm/5
-        [HttpGet("{id}")]
-        public JsonResult Get(int id)
-        {
-            var db = new DBs233765(_context);
-            Spm spm = db.hentEtSpm(id);
-            return Json(spm);
-        }
-
         // POST api/Spm
         [HttpPost]
         public JsonResult Post([FromBody] InnsendtSpmDomene innSpm)
@@ -57,14 +48,11 @@ namespace WebAppOppg3.Controllers
         [HttpPut("{id}")]
         public JsonResult Put (int id, [FromBody] Spm innSpm)
         {
-            if (ModelState.IsValid)
+            var db = new DBs233765(_context);
+            bool OK = db.endreSpm(id, innSpm);
+            if (OK)
             {
-                var db = new DBs233765(_context);
-                bool OK = db.endreSpm(id, innSpm);
-                if (OK)
-                {
-                    return Json("Spørsmålet er endret");
-                }
+                return Json("Spørsmålet er endret");
             }
             return Json("Kunne ikke endre spørsmålet i DB");
         }

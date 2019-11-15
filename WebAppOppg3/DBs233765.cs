@@ -16,7 +16,6 @@ namespace WebAppOppg3
             _context = context;
         }
 
-        // Henter alle spørsmål
         public List<Spm> hentAlleSpm()
         {
             List<Spm> alleSpm = _context.Spm.Select(s => new Spm()
@@ -29,40 +28,6 @@ namespace WebAppOppg3
                 TommelNed = s.TommelNed
             }).ToList();
             return alleSpm;
-        }
-
-        public Spm hentEtSpm(int id)
-        {
-            Spm dbSpm = _context.Spm.FirstOrDefault(s => s.Id == id);
-
-            var etSpm = new Spm()
-            {
-                Id = dbSpm.Id,
-                Sporsmal = dbSpm.Sporsmal,
-                Svar = dbSpm.Svar,
-                Kategori = dbSpm.Kategori,
-                TommelOpp = dbSpm.TommelOpp,
-                TommelNed = dbSpm.TommelNed
-            };
-            return etSpm;
-        }
-
-        // Henter spørsmål basert på kategori
-        public List<Spm> hentSpmTilKategori(String kategori)
-        {
-            var db = new DBs233765(_context);
-            
-            List<Spm> alleSpm = db.hentAlleSpm();
-            List<Spm> spmTilKategori = new List<Spm>();
-
-            foreach (Spm spm in alleSpm)
-            {
-                if (spm.Kategori == kategori)
-                {
-                    spmTilKategori.Add(spm);
-                }
-            }
-            return spmTilKategori;
         }
 
 
@@ -90,7 +55,6 @@ namespace WebAppOppg3
             return true;
         }
 
-        // Lagrer innsendt spm til database
         public bool lagreInnsendtSpm(InnsendtSpmDomene innSpm)
         {
             var nyttSpm = new InnsendtSpm

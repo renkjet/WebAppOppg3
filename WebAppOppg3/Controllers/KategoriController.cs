@@ -19,7 +19,7 @@ namespace WebAppOppg3.Controllers
             _context = context;
         }
 
-        // GET api/Kategori
+        // GET api/Kategori - henter alle kategoriene
         [HttpGet]
         public JsonResult Get()
         {

@@ -18,7 +18,6 @@ namespace WebAppOppg3.Models
         [Required]
         [RegularExpression("^[a-zøæåA-ZØÆÅ.0-9!?.,;.() \\-]{2,250}$")] // Hvor mange tegn????
         public String spm { get; set; }
-            
         }
     }
 
