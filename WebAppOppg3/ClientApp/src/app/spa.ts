@@ -62,7 +62,6 @@ export class SPA {
             );
     };
 
-    // 
     hentEtSpm(id: number) {
         const nyState = { ...this.state };
         for (let key of Object.keys(nyState)) {

@@ -38,10 +38,10 @@ namespace WebAppOppg3.Controllers
                 bool OK = db.lagreInnsendtSpm(innSpm);
                 if (OK)
                 {
-                    return Json("OK");
+                    return Json("Spm er lagret i databasen");
                 }
             }
-            return Json("Kunne ikke sette inn kunden i DB");
+            return Json("Kunne ikke sette inn spm i databasen");
         }
 
         // PUT api/Spm/1
@@ -52,9 +52,9 @@ namespace WebAppOppg3.Controllers
             bool OK = db.endreSpm(id, innSpm);
             if (OK)
             {
-                return Json("Spørsmålet er endret");
+                return Json("Spm er endret");
             }
-            return Json("Kunne ikke endre spørsmålet i DB");
+            return Json("Kunne ikke endre spm i databasen");
         }
     }
 }
