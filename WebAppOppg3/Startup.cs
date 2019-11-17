@@ -23,7 +23,10 @@ namespace WebAppOppg3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) 
         { 
-            services.AddMvc(); 
+            services.AddMvc();
+            // Gammel connectionstring
+            //@"Server=(localdb)\mssqllocaldb;Database=DBs233765;Trusted_Connection=True;ConnectRetryCount=0";
+            // Data Source=tcp:webapplikasjonoppgitpe3200dbserver.database.windows.net,1433;Initial Catalog=WebAppOppg320191117034401_db;User Id=renate@webapplikasjonoppgitpe3200dbserver;Password=Kjetland1994
             var connection = @"Server=(localdb)\mssqllocaldb;Database=DBs233765;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<SpmContext>(options => options.UseSqlServer(connection));
         }
