@@ -17,29 +17,29 @@
   <div *ngIf="laster">Laster spørsmål...</div>
   <div class="container">
     <h1>Spørsmål og svar</h1>
-    <div *ngFor="let kat of alleKategorier">
+    <div *ngFor="let kat of alleKategorier"> <!--Looper gjennom alle kategoriene-->
       <h2>{{kat}}</h2>
       <div class="spmContainer">
-        <div *ngFor="let spm of alleSpm"> 
-          <ng-container *ngIf="spm.kategori == kat">
+        <div *ngFor="let spm of alleSpm">  <!--Looper gjennom alle spørsmålene-->
+          <ng-container *ngIf="spm.kategori == kat"> <!--Legger spørsmål under riktig kategori-->
             <div class="spm2Container " >
-              <div (click)="hentEtSpm(spm.id)"> 
+              <div (click)="settSpmState(spm.id)"> <!--ved klikk på spørsmål sett state til spm true-->
                 <div class="row" id="spmOverskrift">
                   <div class="col-10">
                     {{spm.sporsmal}}
                   </div>
                   <div class="col-1">
                     <div *ngIf="state[spm.id]">
-                      <span class="glyphicon glyphicon-chevron-up"></span>
+                      <span class="glyphicon glyphicon-chevron-up"></span> <!--Viser pil opp hvis spørsmålets svar vises-->
                     </div>
                     <div *ngIf="!state[spm.id]">
-                      <span class="glyphicon glyphicon-chevron-down"></span>
+                      <span class="glyphicon glyphicon-chevron-down"></span> <!--Viser pil ned hvis spørsmålet er "lukket"-->
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <div *ngIf="state[spm.id]">
+                <div *ngIf="state[spm.id]"> <!--Hvis state er true, vis svaret til spørsmålet -->
                   <div class="row">
                     <div class="col-10">
                       <p id="spmSvar">{{spm.svar}}</p>
@@ -52,7 +52,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="row tomler" >
+                  <div class="row tomler" > <!--Viser knapper med upvotes og downvotes-->
                     <div class="col-2">
                       <button id="tommelOpp" class="btn tommel btnbtn" (click)="okTommelOpp(spm.id, spm)">
                         <span class="glyphicon  glyphicon-thumbs-up"></span> {{spm.tommelOpp}}

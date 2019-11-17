@@ -19,7 +19,6 @@ export class SPA  {
     alleKategorier: Array<String>;
     @Input() state = {};
     bekreftelse: boolean;
-
   
     constructor(private _http: HttpClient, private fb: FormBuilder) {
         this.skjema = fb.group({
@@ -62,7 +61,8 @@ export class SPA  {
             );
     };
 
-    hentEtSpm(id: number) {
+
+    settSpmState(id: number) {
         const nyState = { ...this.state };
         for (let key of Object.keys(nyState)) {
             nyState[key] = false;
