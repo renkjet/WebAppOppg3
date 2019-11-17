@@ -27,7 +27,7 @@ namespace WebAppOppg3
             // Gammel connectionstring
             //@"Server=(localdb)\mssqllocaldb;Database=DBs233765;Trusted_Connection=True;ConnectRetryCount=0";
             // Data Source=tcp:webapplikasjonoppgitpe3200dbserver.database.windows.net,1433;Initial Catalog=WebAppOppg320191117034401_db;User Id=renate@webapplikasjonoppgitpe3200dbserver;Password=Kjetland1994
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=DBs233765;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = "Data Source = tcp:vysporsmaldbserver.database.windows.net,1433; Initial Catalog = VySporsmal_db; User Id = Kjetland@vysporsmaldbserver; Password = Heihei123";
             services.AddDbContext<SpmContext>(options => options.UseSqlServer(connection));
         }
 
